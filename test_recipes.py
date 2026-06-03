@@ -35,3 +35,10 @@ def test_recipe_scale():
     scaled = recipe.scale(2)
     assert scaled.ingredients[0].quantity == 1000
     assert recipe.ingredients[0].quantity == 500
+
+def test_dietary_recipe():
+    recipe = DietaryRecipe("Пицца", "без глютена", [Ingredient("Мука", 500, "г")])
+    assert str(recipe) == "[без глютена] Пицца"
+    scaled = recipe.scale(2)
+    assert isinstance(scaled, DietaryRecipe)
+    assert scaled.diet_type == "без глютена"
